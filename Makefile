@@ -1,13 +1,26 @@
-NAME = youdowell/ci-helm
-VERSION ?= snapshot
+PROJECT				?= $(notdir $(patsubst %/,%,$(CURDIR)))
+PACKAGE_VERSION		:= $(shell node -e 'console.log(require("./package.json").version)')
+VERSION				?= $(PACKAGE_VERSION)
 
-.PHONY: all build release
+IMAGE	            := youdowell/$(PROJECT)
+TAG					?= v$(VERSION)
+
+.PHONY: all info build publish version
+
 all: build
 
-build:
-	docker build -t $(NAME):$(VERSION) --rm .
+info:
+	@echo "PROJECT: $(PROJECT)"
+	@echo "VERSION: $(VERSION)"
+	@echo "TAG:     $(TAG)"
+	@echo "CHART:   $(CHART)"
+	@echo "RELEASE: $(RELEASE)"
 
-release:
-	@if ! docker images $(NAME):$(VERSION) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(NAME) version $(VERSION) is not yet built. Please run 'make build'"; false; fi
-	docker tag $(NAME):$(VERSION) $(NAME):latest
-	docker push $(NAME)
+build:
+	docker build -t $(IMAGE):$(TAG) --rm .
+
+publish:
+	docker push $(IMAGE):$(TAG)
+
+version:
+	@echo "New version: ${VERSION}"

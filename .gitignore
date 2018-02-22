@@ -1,15 +1,18 @@
-# Build
-.gradle/
-.settings/
-.project
+## OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
 
-# Derrived
-/data/
+## Eclipse
+.project
+.settings
+
+## Derived
 /build/
-/logs/
-/work/
-/tmp/
-
-# Project
-/config/values.yaml
+/node_modules/
+/npm-debug.log
