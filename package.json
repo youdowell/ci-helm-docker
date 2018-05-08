@@ -1,6 +1,6 @@
 {
   "name": "@youdowell/docker-ci-helm",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Helm Docker image for CI builder",
   "author": "Youdowell AG <admin@youdowell.com>",
   "license": "Apache 2",
