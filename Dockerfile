@@ -1,6 +1,6 @@
 FROM google/cloud-sdk:alpine
 
-ENV HELM_VERSION="v2.9.0"
+ENV HELM_VERSION="v2.9.1"
 
 RUN \
 	HELM_URL="https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz" && \
